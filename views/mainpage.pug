@@ -1,0 +1,38 @@
+head
+
+	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css")
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js")
+	script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js")
+	link(href='/css/mainpage.css',rel='stylesheet')
+	script(src="/socket.io/socket.io.js")
+	script(src="js/mainpage.js")
+
+
+
+
+body
+		h1.jumbotron
+			|Hi! 
+			span#username #{username}
+			|!!!
+
+		
+		div#container
+			div.row
+				div.col-8.bg-dark.text-white#messageContainer
+					ul#messages
+				
+				div.col-4
+					input(type="text" id='search' class='form-control' placeholder ='search..')
+					div#container.playerContainer
+						ul#playerList.list-group
+
+				div.input-group.col-8#messageBox
+					input(type='text',id='message',name='message',class ='form-control',placeholder='type you message here...')
+					input#send(type='submit', name='submit',class='input-group-addon btn btn-default')
+
+				div.col-4.bg-success
+					p
+						span#numPlayer 
+						|  online

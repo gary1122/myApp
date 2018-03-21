@@ -1,0 +1,151 @@
+doctype html
+html
+	head
+		title My App
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js")
+		script(src="/socket.io/socket.io.js")
+		script(src="js/signin.js")
+		script(src="js/myCal.js")
+		script(src="js/calCtrl.js")
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		style.
+			.well {
+				width:600px;
+				margin:auto;
+				margin-top:250px;
+			}
+			.btnExtend{
+	
+				margin-top:20px;
+				width:25%;
+				width:100%;
+			}
+			
+
+
+			#error{
+			color:red;
+			}
+			.btn-default{
+			
+			}
+			.panel{
+			text-align:right;
+			height:50px;
+			}
+
+			.todoNav{
+				height:300px;
+				overflow-y:auto;
+				margin:30px;
+				list-style-type:none;
+			}
+
+			.done{
+				text-decoration: line-through;
+				color:#ccc;
+			}
+
+
+	body
+
+		div.container
+			h2 Dynamic Tabs
+			ul.nav.nav-tabs
+				li.nav-item 
+					a(class="nav-link active" data-toggle='tab' href='#chat') Chat
+				li.nav-item  
+					a(class="nav-link" data-toggle='tab' href='#todo') Todo
+				li.nav-item  
+					a(class="nav-link" data-toggle='tab' href='#cal') calculator
+				li.nav-item  
+					a(href='/snake') game
+
+
+
+		div.tab-content
+			div#chat.tab-pane.fade.in.active
+
+				form(name="userForm",action='/login',method='post')
+					div.form-group.well
+						label(for='username') User name:
+						input(type='text',id='username',name='username',class ='form-control' ng-model="username" required)
+						p#error
+						input(type='submit', name='submit',class='btn btn-primary')
+
+			div#todo.tab-pane.fade
+				div#todoApp(ng-app="todo")
+					div.well.container(ng-controller="todoCtrl")
+						div.input-group
+							input(type="text" class="form-control" name="item",ng-keyup="$event.keyCode==13 && addItem()" ,ng-model="item" required)
+							span.input-group-btn
+								button.btn.btn-primary(ng-click="addItem()") Add
+
+						div.input-group(style="width:200px;margin-top:20px;float:right")
+							input(type="text" style="" class="form-control" ng-model="search")
+							span.input-group-addon
+								i.glyphicon.glyphicon-search
+
+						button.btn.btn-default(ng-click="clearCompleted()" style="margin-top:20px;") Clear Completed
+					
+						ul.todoNav
+							li(ng-repeat="item in items|orderBy:'title'|filter:{title:search}")
+								input(type="checkbox" ng-model="item.done")
+								span(ng-class="{done:item.done}") {{item.title}}
+						p.text-warning {{error}}
+
+
+			div#cal.tab-pane.fade
+				div#calApp.well.container(ng-app="myCal" ng-controller="calCtrl" ng-keydown="keydown($event)" tabindex="0")
+					div.panel.panel-default
+						div.panel-body {{displayTotal}}
+					div.row
+						div.col
+							button.btn.btnExtend.btn-default(ng-click="addOperator('+')" ) +
+						div.col
+							button.btn.btnExtend.btn-default(ng-click="addOperator('-')" ) -
+						div.col
+							button.btn.btnExtend.btn-default(ng-click="addOperator('*')" ) *
+						div.col
+							button.btn.btnExtend.btn-default(ng-click="addOperator('/')" ) /
+					div.row
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(1)" ) 1
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(2)" ) 2
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(3)" ) 3
+					div.row
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(4)" ) 4
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(5)" ) 5
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(6)" ) 6
+					div.row
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(7)" ) 7
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(8)" ) 8
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(9)" ) 9
+
+					div.row
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click='clear()' ) C
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="number(0)" ) 0
+						div.col  
+							button.btn.btnExtend.btn-default(ng-click="equal()" ) =
+
+
+
+

@@ -1,0 +1,97 @@
+doctype html
+html
+	head
+		title test test
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+		script(src="/socket.io/socket.io.js")
+		script(src="js/signin.js")
+
+		style.
+			.well {
+				width:600px;
+				margin:auto;
+				margin-top:250px;
+			}
+			.btn{
+	
+				margin-top:20px;
+				width:25%;
+			}
+			#error{
+			color:red;
+			}
+
+	body
+
+		div.container
+			h2 Dynamic Tabs
+			ul.nav.nav-tabs
+				li.active 
+					a(data-toggle='tab' href='#chat') Chat
+				li 
+					a(data-toggle='tab' href='#todo') Todo
+				li 
+					a(data-toggle='tab' href='#cal') calculator
+				li 
+					a(data-toggle='tab' href='#game') game
+
+
+		div.tab-content
+			div#cal.tab-pane.fade
+
+				form(name="userForm",action='/login',method='post')
+					div.form-group.well.well-lg
+						label(for='username') User name:
+						input(type='text',id='username',name='username',class ='form-control' ng-model="username" required)
+						p#error
+						input(type='submit', name='submit',class='btn btn-primary')
+
+			div#todo.tab-pane.fade
+				div.well.well-lg
+					h3 todo
+
+
+			div#chat.tab-pane.fade.in.active
+				div.well.container
+					h3 calculator
+					div.container
+						div.row
+							div.col  1
+							div.col  1
+							div.col  1
+
+			div#game.tab-pane.fade
+				div.well.well-lg
+					h3 game
+
+		div.container
+			div.row
+				div.col-xs-6  1
+				div.col-xs-6  1
+				div.col-xs-6  1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2Z
